@@ -15,7 +15,7 @@ public class TerraPizzaTest {
     WebDriver driver;
 
     @BeforeEach
-    public void warmUp() {
+    public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(TerraPizzaPage.URL);
@@ -26,21 +26,18 @@ public class TerraPizzaTest {
         driver.findElement(By.xpath(TerraPizzaPage.BUTTON_CLOSE_COOKIES)).click();
         new WebDriverWait(driver, Duration.ofSeconds(1))
                 .until(ExpectedConditions
-                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.BUTTON_PIZZA)));
-        driver.findElement(By.xpath(TerraPizzaPage.BUTTON_PIZZA)).click();
+                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.BUTTON_PIZZA))).click();
         new WebDriverWait(driver, Duration.ofSeconds(1))
                 .until(ExpectedConditions
-                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.BUTTON_PIZZA_MARGARITA_IN_CART)));
-        driver.findElement(By.xpath(TerraPizzaPage.BUTTON_PIZZA_MARGARITA_IN_CART)).click();
+                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.BUTTON_PIZZA_MARGARITA_IN_CART))).click();
         new WebDriverWait(driver, Duration.ofSeconds(1))
                 .until(ExpectedConditions
-                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.BUTTON_BASKET)));
-        driver.findElement(By.xpath(TerraPizzaPage.BUTTON_BASKET)).click();
-        new WebDriverWait(driver, Duration.ofSeconds(1))
+                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.BUTTON_BASKET))).click();
+        new WebDriverWait(driver, Duration.ofSeconds(4))
                 .until(ExpectedConditions
-                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.LABEL_PIZZA_MARGARITA_IN_CART)));
+                        .visibilityOfElementLocated(By.xpath(TerraPizzaPage.LABEL_PIZZA_MARGARITA_IN_CART_ALL)));
 
-        Assertions.assertEquals("Пицца Маргарита Классическая",driver.findElement(By.xpath(TerraPizzaPage.LABEL_PIZZA_MARGARITA_IN_CART)).getText());
+        Assertions.assertEquals("Пицца Маргарита Классическая 32 см",driver.findElement(By.xpath(TerraPizzaPage.LABEL_PIZZA_MARGARITA_IN_CART)).getText());
     }
 
     @AfterEach
